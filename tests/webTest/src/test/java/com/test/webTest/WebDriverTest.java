@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.By.ByClassName;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -29,6 +28,24 @@ public class WebDriverTest {
 		assertEquals(element.getText(),"词典");
 		element = driver.findElement(By.className("a11yhide"));
 		assertEquals(element.getText(),"必应");
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		driver.quit();
+	}
+	
+	@Test
+	public void test01() {
+		driver = new ChromeDriver();
+		driver.get(baseUrl);
+		WebElement element = driver.findElement(By.id("sb_form_q"));
+		element.sendKeys("software testing");
+		element.submit();
+		element = driver.findElement(By.id("est_en"));
+		assertEquals(element.getText(),"国际版");
 		try {
 			Thread.sleep(10000);
 		} catch (InterruptedException e) {
